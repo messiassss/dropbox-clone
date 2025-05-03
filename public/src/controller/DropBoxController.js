@@ -51,13 +51,16 @@ class DropBoxController {
             let file = JSON.parse(li.dataset.file);
             let key = li.dataset.key;
 
-            
             let formData = new FormData();
-
+      
             formData.append('path', file.filepath)
             formData.append('key',key)
-
-            promises.push(this.ajax('/file', 'DELETE',formData))
+            if(file.mimetype === 'folder'){
+                this.getFirebaseRef().child(key).remove()
+            }else if(file.mimetype){
+                promises.push(this.ajax('/file', 'DELETE',formData))
+            }
+            
 
         })
 
