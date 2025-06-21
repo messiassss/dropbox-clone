@@ -24,14 +24,14 @@ class DropBoxController {
     connectFirebase() {
 
         const firebaseConfig = {
-            apiKey: "AIzaSyBeagMAlvYzMeJclueX8S20vQXToYPUDfo",
+              apiKey: "AIzaSyBeagMAlvYzMeJclueX8S20vQXToYPUDfo",
             authDomain: "dropbox-clone-7c366.firebaseapp.com",
             databaseURL: "https://dropbox-clone-7c366-default-rtdb.firebaseio.com",
             projectId: "dropbox-clone-7c366",
             storageBucket: "dropbox-clone-7c366.firebasestorage.app",
             messagingSenderId: "137933386231",
-            appId: "1:137933386231:web:ead80eb4b6e0f30b737ef2",
-            measurementId: "G-HG9DSLGP8C"
+            appId: "1:137933386231:web:180cea350e7a9136737ef2",
+            measurementId: "G-LHMGQ2DZWE"
         };
 
         firebase.initializeApp(firebaseConfig);
@@ -346,7 +346,7 @@ class DropBoxController {
         })
 
 
-
+        this.startUploadTime = Date.now();
 
         return Promise.all(promises);
     }
