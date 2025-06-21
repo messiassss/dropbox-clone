@@ -63,11 +63,17 @@ router.delete('/file', (req, res) => {
 })
 
 router.post('/upload', (req, res) => {
+  const uploadDir = './upload';
+
+  if (!fs.existsSync(uploadDir)) {
+    fs.mkdirSync(uploadDir);
+  }
+
   let form = new formidable.IncomingForm({
     uploadDir: './upload',
     keepExtensions: true
   })
-
+ 
   form.parse(req, (err, fields, files) => {
     res.json({
       files

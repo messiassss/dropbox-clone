@@ -30,8 +30,8 @@ class DropBoxController {
             projectId: "dropbox-clone-7c366",
             storageBucket: "dropbox-clone-7c366.firebasestorage.app",
             messagingSenderId: "137933386231",
-            appId: "1:137933386231:web:ead80eb4b6e0f30b737ef2",
-            measurementId: "G-HG9DSLGP8C"
+            appId: "1:137933386231:web:180cea350e7a9136737ef2",
+            measurementId: "G-LHMGQ2DZWE"
         };
 
         firebase.initializeApp(firebaseConfig);
@@ -242,37 +242,37 @@ class DropBoxController {
         return firebase.database().ref(path);
     }
 
-    ajax(url, method = 'GET', formData = new FormData, onprogress = function () { },
-        onloadstart = function () { }) {
+        ajax(url, method = 'GET', formData = new FormData, onprogress = function () { },
+            onloadstart = function () { }) {
 
-        return new Promise((resolve, reject) => {
-            let ajax = new XMLHttpRequest();
-            ajax.open(method, url);
-            ajax.onload = event => {
-                try {
-                    resolve(JSON.parse(ajax.responseText));
+            return new Promise((resolve, reject) => {
+                let ajax = new XMLHttpRequest();
+                ajax.open(method, url);
+                ajax.onload = event => {
+                    try {
+                        resolve(JSON.parse(ajax.responseText));
 
-                } catch (e) {
+                    } catch (e) {
 
-                    reject(e);
+                        reject(e);
+                    }
                 }
-            }
 
-            ajax.onerror = event => {
-                reject(event);
-            }
+                ajax.onerror = event => {
+                    reject(event);
+                }
 
-            ajax.upload.onprogress = onprogress;
+                ajax.upload.onprogress = onprogress;
 
-            onloadstart();
+                onloadstart();
 
-            ajax.send(formData);
-        })
-
+                ajax.send(formData);
+            })
 
 
 
-    }
+
+        }
     setAttrNames(file) {
         return {
             name: file.originalFilename,
@@ -281,6 +281,7 @@ class DropBoxController {
             size: file.size,
             newFilename: file.newFilename,
             mtime: file.mtime
+            
         };
     }
 
