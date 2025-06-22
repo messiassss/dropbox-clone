@@ -207,10 +207,10 @@ class DropBoxController {
             let file = JSON.parse(li.dataset.file);
             console.log(li.dataset.key)
 
-            let name = prompt('Renomei o arquivo', file.name)
+            let name = prompt('Renomei o arquivo', file.originalName)
 
             if (name) {
-                file.name = name;
+                file.originalName = name;
 
                 this.getFirebaseRef().child(li.dataset.key).set(file);
             }
@@ -248,6 +248,7 @@ class DropBoxController {
                 responses.forEach(resp => {
 
                     this.getFirebaseRef().push().set({
+                        originalName : resp.name,
                         name: resp.name,
                         type: resp.contentType,
                         path: resp.customMetadata.downloadURL,
@@ -346,7 +347,7 @@ class DropBoxController {
         })
 
 
-        this.startUploadTime = Date.now();
+        this.startUploadTime = Date.now();  
 
         return Promise.all(promises);
     }
@@ -558,7 +559,7 @@ class DropBoxController {
         li.dataset.file = JSON.stringify(file);
 
         li.innerHTML = `${this.getFileType(file)}
-                    <div class="name text-center">${file.name}</div>`;
+                    <div class="name text-center">${file.originalName}</div>`;
         this.initEventsLi(li);
         return li;
     }
