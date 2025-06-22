@@ -181,6 +181,7 @@ class DropBoxController {
 
             if (name) {
                 this.getFirebaseRef().push().set({
+                    originalName: name,
                     name: name,
                     type: 'folder',
                     path: this.currentFolder.join('/')
